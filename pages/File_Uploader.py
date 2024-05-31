@@ -22,20 +22,8 @@ def update_sheet(existing_data, data):
             existing_data = existing_data.append(row, ignore_index=True)
     return existing_data
 
-file_types = ["SR_Vol" , "CC_TXN"] 
+file_types = ["SR_Vol" , "CC_TXN" ,"CALLBACK_SR" , "LITE_SR" , "MAN_EXE" , "MAN_CRE" , "ON_OFF_US"] 
 banks = ["AXIS"]
-
-sr_col_list = [
-    "Date", "Bank", "P2M_Pay_Volume", "P2M_COLLECT_Volume", "P2P_Pay_Volume",
-    "P2P_COLLECT_Volume", "P2M_Pay_Succvolume", "P2M_Collect_Succvolume",
-    "P2P_Pay_Succvolume", "P2P_Collect_Succvolume", "CREDIT CARD Volume",
-    "CREDIT CARD Succvolume", "CALLBACK Volume", "CALLBACK Succvolume",
-    "UPI LITE Volume", "UPI LITE Succvolume", "Mandate Volume Execution",
-    "Mandate SuccVolume Execution", "Mandate creation Vol",
-    "Mandate creation succvol", "CC ONUS Vol", "CC OFFUS VOL",
-    "CC ONUS sUCC-Vol", "CC OFFUS Succ-VOL"
-]
-
 cols = st.columns(4)
 
 with cols[0]:
