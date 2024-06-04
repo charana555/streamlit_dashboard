@@ -77,3 +77,5 @@ error_codes_df = error_codes_df.rename(columns={'error' : 'Error Code'})
 error_code_description = pd.merge(error_codes_df[['Error Code']] , npci_data[['Error Code' , 'Description']] , on='Error Code' , how="left")
 with st.expander("Error Codes Description"):
     st.dataframe(error_code_description)
+    
+    
