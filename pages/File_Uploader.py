@@ -5,6 +5,7 @@ from connection import get_connection
 
 from utils.upload_volume import upload_csv
 from utils.upload_errorcodes import upload_error_csv
+from utils.upload_refunds import upload_refund_csv
 
 st.set_page_config(layout='wide')
 
@@ -32,10 +33,14 @@ file_types = {
         "CREDIT CARD Error codes",
         "UPI LITE Failure Error codes",
         "MANDATE CREATION  Error codes"
+    ],
+    "Refunds" : [
+        "Online",
+        "Offline"
     ]
     } 
 banks = ["AXIS"]
-category = ["Volume" , "ErrorCodes"]
+category = ["Volume" , "ErrorCodes" , "Refunds"]
 cols = st.columns(3)
 
 with cols[0]:
@@ -45,7 +50,7 @@ with cols[1]:
 with cols[2]:
     selected_bank = st.selectbox("Choose Bank", banks)
     
-if selected_category == "ErrorCodes":
+if selected_category == "ErrorCodes" or selected_category == "Refunds":
     with cols[0]:
         start_date = st.date_input("Start Date")    
     with cols[1]:
@@ -59,7 +64,9 @@ if uploaded_file is not None:
         if selected_category == "Volume":
             upload_csv(df , selected_bank , selected_file_type)
         elif selected_category == "ErrorCodes":
-            upload_error_csv(df , selected_bank , selected_file_type , start_date , end_date)
+            upload_error_csv(df , selected_bank , selected_file_type , start_date , end_date)    
+        elif selected_category == "Refunds":
+            upload_refund_csv(df , selected_bank , selected_file_type , start_date , end_date)
             
 
     
