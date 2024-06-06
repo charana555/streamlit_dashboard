@@ -12,6 +12,7 @@ file_name_keywords = [
     'CCTXN' ,
     'CallbackSR' ,
     'LITESR' ,
+    'LITEEC' ,
     'mandtxnvol' ,
     'txnerror' ,
     'referror' ,
@@ -31,6 +32,7 @@ file_name_category_mapper = {
     'referror' : 'ErrorCodes',
     'CCTXNerrorcode' : 'ErrorCodes',
     'mandateerror' : 'ErrorCodes',
+    'LITEEC' : 'ErrorCodes',
     'Offrefund' : 'Refunds',
     'Onlrefund' : 'Refunds',
 }
@@ -45,6 +47,7 @@ file_name_type_mapper = {
     'referror' : 'Refund Failure Error codes',
     'CCTXNerrorcode' : 'CREDIT CARD Error codes',
     'mandateerror' : 'Mandate Txn Failure Error codes',
+    'LITEEC' : 'UPI LITE Failure Error codes',
     'Offrefund' : 'Offline',
     'Onlrefund' : 'Online',
 }

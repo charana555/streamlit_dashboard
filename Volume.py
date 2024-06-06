@@ -24,7 +24,7 @@ available_dates = df["Date"].unique()
 
 max_date = pd.to_datetime(available_dates , format='%d/%m/%Y').max()
 acc_min_date = pd.to_datetime(available_dates , format='%d/%m/%Y').min()
-min_date = max_date - pd.Timedelta(days=14)
+min_date = max_date - pd.Timedelta(days=13)
 
 with cols[1]:
     start_date = st.date_input("Start Date", min_value=acc_min_date, max_value=max_date, value=min_date)
