@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd 
 from datetime import datetime
-from connection import get_connection
+from connection import get_update_connection
 
 
 
@@ -109,7 +109,7 @@ def upload_csv(data , bank , type):
         data = preprocess_man_cre_file(data , bank)
     elif type == "ON_OFF_US":
         data = preprocess_cc_onus_offus(data , bank)
-    conn = get_connection()
+    conn = get_update_connection()
     client_data = conn.read(worksheet="Volume")
     client_data.dropna(how='all', inplace=True)
     

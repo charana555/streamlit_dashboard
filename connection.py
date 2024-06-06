@@ -6,3 +6,8 @@ from streamlit_gsheets import GSheetsConnection
 def get_connection():
     conn = st.connection("gsheets", type=GSheetsConnection)
     return conn
+
+
+def get_update_connection():
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    return conn

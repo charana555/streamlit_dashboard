@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd 
 from datetime import datetime
-from connection import get_connection
+from connection import get_update_connection
 
 
 error_col_list = [
@@ -22,8 +22,6 @@ def update_error_sheet(existing_data, new_data):
             match = existing_data[(existing_data['DateRange'] == date) & 
                                 (existing_data['Bank'] == bank) & 
                                 (existing_data['error'] == error) & (existing_data['Type'] == type)]
-            print(new_row)
-            print(match)
             if not match.empty:
                 # Update the 'count' for the existing row
                 existing_data.loc[match.index, 'count'] = new_row['count']
@@ -56,7 +54,7 @@ def upload_error_csv(data , bank , type , start_date , end_date):
     
     filtered_data['error'] = filtered_data['error'].astype(str)
     
-    conn = get_connection()
+    conn = get_update_connection()
     client_data = conn.read(worksheet="ErrorCodes")
     client_data.dropna(how='all', inplace=True)
 

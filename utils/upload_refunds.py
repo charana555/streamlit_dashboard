@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd 
 from datetime import datetime
-from connection import get_connection
+from connection import get_update_connection
 
 refund_col_list = [
     "DateRange",
@@ -63,12 +63,9 @@ def upload_refund_csv(data , bank , type , start_date , end_date):
 
     filtered_data['sr'] = (filtered_data['count'] * 100) / total_count
 
-    st.write(total_count)
-    st.write(filtered_data)
-    conn = get_connection()
+    conn = get_update_connection()
     client_data = conn.read(worksheet="Refunds")
     client_data.dropna(how='all', inplace=True)
 
     updated_data = update_refund_sheet(client_data, filtered_data)
-    st.write(updated_data)
     cre = conn.update(worksheet="Refunds" , data=updated_data)
