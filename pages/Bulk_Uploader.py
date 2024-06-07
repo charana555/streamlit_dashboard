@@ -4,6 +4,7 @@ import pandas as pd
 from utils.upload_volume import upload_csv
 from utils.upload_errorcodes import upload_error_csv
 from utils.upload_refunds import upload_refund_csv
+from utils.upload_vmn import upload_vmn_csv
 
 st.set_page_config(layout='wide')
 
@@ -20,6 +21,7 @@ file_name_keywords = [
     'mandateerror' ,
     'Offrefund' ,
     'Onlrefund' ,
+    'VMN'
 ]
 
 file_name_category_mapper = {
@@ -35,6 +37,7 @@ file_name_category_mapper = {
     'LITEEC' : 'ErrorCodes',
     'Offrefund' : 'Refunds',
     'Onlrefund' : 'Refunds',
+    'VMN' : 'VMN'
 }
 
 file_name_type_mapper = {
@@ -50,6 +53,7 @@ file_name_type_mapper = {
     'LITEEC' : 'UPI LITE Failure Error codes',
     'Offrefund' : 'Offline',
     'Onlrefund' : 'Online',
+    'VMN' :'VMN'
 }
 
 banks = ["AXIS" , "YAPL" , "RAPL"]
@@ -89,6 +93,8 @@ if st.button("Upload CSV"):
                         upload_error_csv(df , selected_bank , selected_file_type , start_date , end_date)    
                     elif selected_category == "Refunds":
                         upload_refund_csv(df , selected_bank , selected_file_type , start_date , end_date)
+                    elif selected_category == "VMN":
+                        upload_vmn_csv(df , selected_bank , start_date , end_date)
 
                     st.success(f"{file.name} file processed successfully!")
                     st.cache_data.clear()

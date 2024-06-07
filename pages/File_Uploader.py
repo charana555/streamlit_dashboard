@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd 
 from datetime import datetime
-from connection import get_connection
 
 from utils.upload_volume import upload_csv
 from utils.upload_errorcodes import upload_error_csv
 from utils.upload_refunds import upload_refund_csv
+from utils.upload_vmn import upload_vmn_csv
 
 st.set_page_config(layout='wide')
 
@@ -37,10 +37,11 @@ file_types = {
     "Refunds" : [
         "Online",
         "Offline"
-    ]
+    ],
+    "VMN" :["VMN"]
     } 
 banks = ["AXIS"]
-category = ["Volume" , "ErrorCodes" , "Refunds"]
+category = ["Volume" , "ErrorCodes" , "Refunds" , "VMN"]
 cols = st.columns(3)
 
 with cols[0]:
@@ -50,7 +51,7 @@ with cols[1]:
 with cols[2]:
     selected_bank = st.selectbox("Choose Bank", banks)
     
-if selected_category == "ErrorCodes" or selected_category == "Refunds":
+if selected_category != "Volume":
     with cols[0]:
         start_date = st.date_input("Start Date")    
     with cols[1]:
@@ -68,5 +69,9 @@ if uploaded_file is not None:
         elif selected_category == "Refunds":
             upload_refund_csv(df , selected_bank , selected_file_type , start_date , end_date)
             
+        elif selected_category == "VMN":
+            upload_vmn_csv(df , selected_bank , start_date , end_date)
+            
 
-    
+        st.success(f"{uploaded_file.name} file processed successfully!")
+        st.cache_data.clear()
