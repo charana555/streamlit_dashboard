@@ -6,23 +6,9 @@ from utils.upload_volume import upload_csv
 from utils.upload_errorcodes import upload_error_csv
 from utils.upload_refunds import upload_refund_csv
 from utils.upload_vmn import upload_vmn_csv
+from utils.upload_bind_device import upload_bind_csv
 
 st.set_page_config(layout='wide')
-
-def update_sheet(existing_data, data):
-    for _, row in data.iterrows():
-        date, bank = row['Date'], row['Bank']
-        # Check if the date and bank already exist
-        match = existing_data[(existing_data['Date'] == date) & (existing_data['Bank'] == bank)]
-        if not match.empty:
-            # Update existing row
-            for col in data.columns:
-                if col != 'Date' and col != 'Bank':
-                    existing_data.loc[match.index, col] = row[col]
-        else:
-            # Append new row
-            existing_data = existing_data.append(row, ignore_index=True)
-    return existing_data
 
 file_types = {
     "Volume" : ["SR_Vol" , "CC_TXN" ,"CALLBACK_SR" , "LITE_SR" , "MAN_EXE" , "MAN_CRE" , "ON_OFF_US"] ,
@@ -38,10 +24,11 @@ file_types = {
         "Online",
         "Offline"
     ],
-    "VMN" :["VMN"]
+    "VMN" :["VMN"],
+    "BindDevice" : ["BindDevice"]
     } 
 banks = ["AXIS"]
-category = ["Volume" , "ErrorCodes" , "Refunds" , "VMN"]
+category = ["Volume" , "ErrorCodes" , "Refunds" , "VMN" , "BindDevice"]
 cols = st.columns(3)
 
 with cols[0]:
@@ -68,9 +55,10 @@ if uploaded_file is not None:
             upload_error_csv(df , selected_bank , selected_file_type , start_date , end_date)    
         elif selected_category == "Refunds":
             upload_refund_csv(df , selected_bank , selected_file_type , start_date , end_date)
-            
         elif selected_category == "VMN":
             upload_vmn_csv(df , selected_bank , start_date , end_date)
+        elif selected_category == "BindDevice":
+            upload_bind_csv(df , selected_bank)
             
 
         st.success(f"{uploaded_file.name} file processed successfully!")
