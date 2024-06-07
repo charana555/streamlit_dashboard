@@ -24,7 +24,7 @@ available_dates = df["Date"].unique()
 
 max_date = pd.to_datetime(available_dates , format='%d/%m/%Y').max()
 acc_min_date = pd.to_datetime(available_dates , format='%d/%m/%Y').min()
-min_date = max_date - pd.Timedelta(days=13)
+min_date = max_date - pd.Timedelta(days=14)
 
 with cols[1]:
     start_date = st.date_input("Start Date", min_value=acc_min_date, max_value=max_date, value=min_date)
@@ -33,4 +33,5 @@ with cols[2]:
 
 
 filtered_df = df.query('Bank == @selected_bank and Date >= @start_date and Date <= @end_date')
+filtered_df = filtered_df.sort_values(by='Date')
 stats_component(filtered_df , selected_bank)
