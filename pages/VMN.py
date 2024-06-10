@@ -19,7 +19,6 @@ with cols[0]:
 with cols[1]:
     selected_bank = st.selectbox("Select a Bank", bank_list)
 
-color_palette = ["#003f5c"]
 
 filtered_df = df.query('Bank == @selected_bank and DateRange == @selected_date_range')
 
@@ -29,7 +28,6 @@ on_txn_fig = px.bar(
     labels={"aggregator" : "Status" , "successRate" : "SR"} , 
     text="successRate" , 
     title=f"{selected_bank} VMN SR",
-    color_discrete_sequence=color_palette
     )
 on_txn_fig.update_layout(xaxis_title=f'{selected_bank} Aggregators', yaxis_title='SR', title_x=0.5)
 st.plotly_chart(on_txn_fig)
