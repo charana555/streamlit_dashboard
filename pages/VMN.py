@@ -16,18 +16,42 @@ cols = st.columns(4)
 with cols[0]:
     selected_date_range = st.selectbox("Select a Date range", date_range_list)
 
-with cols[1]:
-    selected_bank = st.selectbox("Select a Bank", bank_list)
+# with cols[1]:
+#     selected_bank = st.selectbox("Select a Bank", bank_list)
 
 
-filtered_df = df.query('Bank == @selected_bank and DateRange == @selected_date_range')
+# filtered_df = df.query('Bank == @selected_bank and DateRange == @selected_date_range')
 
-on_txn_fig = px.bar(
-    filtered_df , x="aggregator" , 
+axis_df = df.query('Bank == "AXIS" and DateRange == @selected_date_range')
+yapl_df = df.query('Bank == "YAPL" and DateRange == @selected_date_range')
+rapl_df = df.query('Bank == "RAPL" and DateRange == @selected_date_range')
+
+axis_txn_fig = px.bar(
+    axis_df , x="aggregator" , 
     y="successRate" , 
     labels={"aggregator" : "Status" , "successRate" : "SR"} , 
     text="successRate" , 
-    title=f"{selected_bank} VMN SR",
+    title=f"AXIS VMN SR",
     )
-on_txn_fig.update_layout(xaxis_title=f'{selected_bank} Aggregators', yaxis_title='SR', title_x=0.5)
-st.plotly_chart(on_txn_fig)
+axis_txn_fig.update_layout(xaxis_title=f'AXIS Aggregators', yaxis_title='SR', title_x=0.5)
+st.plotly_chart(axis_txn_fig)
+
+yapl_txn_fig = px.bar(
+    yapl_df , x="aggregator" , 
+    y="successRate" , 
+    labels={"aggregator" : "Status" , "successRate" : "SR"} , 
+    text="successRate" , 
+    title=f"YAPL VMN SR",
+    )
+yapl_txn_fig.update_layout(xaxis_title=f'YAPL Aggregators', yaxis_title='SR', title_x=0.5)
+st.plotly_chart(yapl_txn_fig)
+
+rapl_txn_fig = px.bar(
+    rapl_df , x="aggregator" , 
+    y="successRate" , 
+    labels={"aggregator" : "Status" , "successRate" : "SR"} , 
+    text="successRate" , 
+    title=f"RAPL VMN SR",
+    )
+rapl_txn_fig.update_layout(xaxis_title=f'RAPL Aggregators', yaxis_title='SR', title_x=0.5)
+st.plotly_chart(rapl_txn_fig)
