@@ -27,7 +27,7 @@ file_types = {
     "VMN" :["VMN"],
     "BindDevice" : ["BindDevice"]
     } 
-banks = ["AXIS"]
+banks = ["AXIS" , "YAPL" , "RAPL"]
 category = ["Volume" , "ErrorCodes" , "Refunds" , "VMN" , "BindDevice"]
 cols = st.columns(3)
 
