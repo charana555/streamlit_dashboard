@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-def stats_component(data , bank):
+def stats_component(data , bank , filtered_tps):
     total_p2p_pay_volume = data["P2P_Pay_Volume"]
     total_p2m_pay_volume = data["P2M_Pay_Volume"]
     total_p2p_collect_volume = data["P2P_COLLECT_Volume"]
@@ -30,6 +30,12 @@ def stats_component(data , bank):
     with cols[2]:
         collect_sr = ((total_p2m_collect_succvolume.sum() + total_p2p_collect_succvolume.sum()) * 100) / (total_p2p_collect_volume.sum() + total_p2m_collect_volume.sum()) if total_p2p_collect_volume.sum() + total_p2m_collect_volume.sum() != 0 else 0
         st.metric(label="Collect SR %" , value=f"{round(collect_sr , 1)} %")
+    
+    with cols[3]:
+        st.metric(label="AVG TPS" , value=f"{round(total_volume / (data['Date'].count() * 24 * 60 * 60) , 2)}")
+    if filtered_tps['avg'].count() > 0:
+        with cols[4]:
+            st.metric(label="Max TPS" , value=filtered_tps['max'].sum())
 
     st.markdown("---")
 

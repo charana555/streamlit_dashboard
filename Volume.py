@@ -8,6 +8,7 @@ st.set_page_config(layout="wide")
 # Create a connection object.
 conn = get_connection()
 df = conn.read(worksheet="Volume")
+tps_df = conn.read(worksheet='Tps')
 df.dropna(how='all' , inplace=True)
 
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y' , errors='coerce')
@@ -34,4 +35,9 @@ with cols[2]:
 
 filtered_df = df.query('Bank == @selected_bank and Date >= @start_date and Date <= @end_date')
 filtered_df = filtered_df.sort_values(by='Date')
-stats_component(filtered_df , selected_bank)
+
+tps_date_range = f"{start_date.strftime('%d/%m/%Y')} - {end_date.strftime('%d/%m/%Y')}"
+
+filtered_tps = tps_df.query('Bank == @selected_bank and DateRange == @tps_date_range')
+
+stats_component(filtered_df , selected_bank , filtered_tps)
