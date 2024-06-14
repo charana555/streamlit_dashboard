@@ -23,7 +23,9 @@ file_name_keywords = [
     'Offrefund' ,
     'Onlrefund' ,
     'VMN',
-    'Binddevicesr'
+    'Binddevicesr',
+    'MANDATECREATIONec',
+    'MANDATECREATIONVOLSR'
 ]
 
 file_name_category_mapper = {
@@ -32,10 +34,12 @@ file_name_category_mapper = {
     'CallbackSR' : 'Volume',
     'LITESR' : 'Volume',
     'mandtxnvol' : 'Volume',
+    'MANDATECREATIONVOLSR' : 'Volume',
     'txnerror' : 'ErrorCodes',
     'referror' : 'ErrorCodes',
     'CCTXNerrorcode' : 'ErrorCodes',
     'mandateerror' : 'ErrorCodes',
+    'MANDATECREATIONec' : 'ErrorCodes',
     'LITEEC' : 'ErrorCodes',
     'Offrefund' : 'Refunds',
     'Onlrefund' : 'Refunds',
@@ -49,11 +53,13 @@ file_name_type_mapper = {
     'CallbackSR' : 'CALLBACK_SR',
     'LITESR' : 'LITE_SR',
     'mandtxnvol' : 'MAN_EXE',
+    'MANDATECREATIONVOLSR' : 'MAN_CRE',
     'txnerror' : 'Transaction Failure Error codes',
     'referror' : 'Refund Failure Error codes',
     'CCTXNerrorcode' : 'CREDIT CARD Error codes',
     'mandateerror' : 'Mandate Txn Failure Error codes',
     'LITEEC' : 'UPI LITE Failure Error codes',
+    'MANDATECREATIONec' : 'MANDATE CREATION  Error codes',
     'Offrefund' : 'Offline',
     'Onlrefund' : 'Online',
     'VMN' :'VMN',
