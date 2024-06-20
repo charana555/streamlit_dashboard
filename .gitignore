@@ -1,2 +1,3 @@
 .streamlit
 myenv
+__pycache__
