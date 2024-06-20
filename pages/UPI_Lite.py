@@ -15,7 +15,7 @@ df.dropna(how='all' , inplace=True)
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y' , errors='coerce')
 cols_to_convert = [col for col in df.columns if col not in ['Bank', 'Date']]
 
-st.title("Credit Card Analytics")
+st.title("UPI Lite Analytics")
 
 cols = st.columns(4)
 
@@ -41,18 +41,18 @@ st.markdown("######")
 df = pd.DataFrame(filtered_df)
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
 
-df["Credit Card sr"] = (df["CREDIT CARD Succvolume"] * 100) / df["CREDIT CARD Volume"]
+df["UPI Lite sr"] = (df["UPI LITE Succvolume"] * 100) / df["UPI LITE Volume"]
 
 # Create the line chart
 cre_sr_fig = px.bar(df,
             x='Date', 
-            y='Credit Card sr', 
+            y='UPI Lite sr', 
             color='Bank', 
-            title='Credit Card sr ' , 
+            title='UPI Lite sr ' , 
             # markers=True,
             barmode='group',
-            labels={"Credit Card sr": "Percentage (%)" , "Date" : "Date"},
-            text=["{:.1f} %".format(value) for value in df["Credit Card sr"]])
+            labels={"UPI Lite sr": "Percentage (%)" , "Date" : "Date"},
+            text=["{:.1f} %".format(value) for value in df["UPI Lite sr"]])
 
 # cre_sr_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -65,12 +65,12 @@ st.plotly_chart(cre_sr_fig)
 # Create the line chart
 cre_vol_fig = px.line(df,
             x='Date', 
-            y='CREDIT CARD Volume', 
+            y='UPI LITE Volume', 
             color='Bank', 
-            title='CREDIT CARD Volumeume ' , 
+            title='UPI LITE Volumeume ' , 
             markers=True,
-            labels={"CREDIT CARD Volume": "Volume (M)" , "Date" : "Date"},
-            text=["{:.1f} k".format(value/1000) for value in df["CREDIT CARD Volume"]])
+            labels={"UPI LITE Volume": "Volume (M)" , "Date" : "Date"},
+            text=["{:.1f} k".format(value/1000) for value in df["UPI LITE Volume"]])
 
 cre_vol_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -83,12 +83,12 @@ st.plotly_chart(cre_vol_fig)
 # Create the line chart
 cre_succ_vol_fig = px.line(df,
             x='Date', 
-            y='CREDIT CARD Succvolume', 
+            y='UPI LITE Succvolume', 
             color='Bank', 
-            title='CREDIT CARD Succvolume' , 
+            title='UPI LITE Succvolume' , 
             markers=True,
-            labels={"CREDIT CARD Succvolume": "Volume (M)" , "Date" : "Date"},
-            text=["{:.1f} k".format(value/1000) for value in df["CREDIT CARD Succvolume"]])
+            labels={"UPI LITE Succvolume": "Volume (M)" , "Date" : "Date"},
+            text=["{:.1f} k".format(value/1000) for value in df["UPI LITE Succvolume"]])
 
 cre_succ_vol_fig.update_yaxes(tick0=0, dtick=1000)
 
