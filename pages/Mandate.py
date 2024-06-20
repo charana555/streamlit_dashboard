@@ -42,22 +42,22 @@ with st.expander("Mandate Creation"):
 
     # st.subheader("Mandate Creation")
 
-    df = pd.DataFrame(filtered_df)
-    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+    cre_df = pd.DataFrame(filtered_df)
+    cre_df['Date'] = pd.to_datetime(cre_df['Date'], format='%d/%m/%Y')
 
 
 
-    df["Mandate creation sr"] = (df["Mandate creation succvol"] * 100) / df["Mandate creation Vol"]
+    cre_df["Mandate creation sr"] = (cre_df["Mandate creation succvol"] * 100) / cre_df["Mandate creation Vol"]
 
     # Create the line chart
-    cre_sr_fig = px.line(df,
+    cre_sr_fig = px.line(cre_df,
                 x='Date', 
                 y='Mandate creation sr', 
                 color='Bank', 
                 title='Mandate Creation sr ' , 
                 markers=True,
                 labels={"Mandate creation sr": "Percentage (%)" , "Date" : "Date"},
-                text=["{:.1f} %".format(value) for value in df["Mandate creation sr"]])
+                text=["{:.1f} %".format(value) for value in cre_df["Mandate creation sr"]])
 
     # cre_sr_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -68,14 +68,14 @@ with st.expander("Mandate Creation"):
     st.plotly_chart(cre_sr_fig)
 
     # Create the line chart
-    cre_vol_fig = px.line(df,
+    cre_vol_fig = px.line(cre_df,
                 x='Date', 
                 y='Mandate creation Vol', 
                 color='Bank', 
                 title='Mandate Creation Volume ' , 
                 markers=True,
                 labels={"Mandate creation Vol": "Volume (M)" , "Date" : "Date"},
-                text=["{:.1f} k".format(value/1000) for value in df["Mandate creation Vol"]])
+                text=["{:.1f} k".format(value/1000) for value in cre_df["Mandate creation Vol"]])
 
     cre_vol_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -86,14 +86,14 @@ with st.expander("Mandate Creation"):
     st.plotly_chart(cre_vol_fig)
 
     # Create the line chart
-    cre_succ_vol_fig = px.line(df,
+    cre_succ_vol_fig = px.line(cre_df,
                 x='Date', 
                 y='Mandate creation succvol', 
                 color='Bank', 
                 title='Mandate creation succvol' , 
                 markers=True,
                 labels={"Mandate creation succvol": "Volume (M)" , "Date" : "Date"},
-                text=["{:.1f} k".format(value/1000) for value in df["Mandate creation succvol"]])
+                text=["{:.1f} k".format(value/1000) for value in cre_df["Mandate creation succvol"]])
 
     cre_succ_vol_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -107,22 +107,22 @@ with st.expander("Mandate Excution"):
 
     # st.subheader("Mandate Creation")
 
-    df = pd.DataFrame(filtered_df)
-    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+    exe_df = pd.DataFrame(filtered_df)
+    exe_df['Date'] = pd.to_datetime(exe_df['Date'], format='%d/%m/%Y')
 
 
 
-    df["Mandate Execution sr"] = (df["Mandate SuccVolume Execution"] * 100) / df["Mandate Volume Execution"]
+    exe_df["Mandate Execution sr"] = (exe_df["Mandate SuccVolume Execution"] * 100) / exe_df["Mandate Volume Execution"]
 
     # Create the line chart
-    exe_sr_fig = px.line(df,
+    exe_sr_fig = px.line(exe_df,
                 x='Date', 
                 y='Mandate Execution sr', 
                 color='Bank', 
                 title='Mandate Execution sr ' , 
                 markers=True,
                 labels={"Mandate Execution sr": "Percentage (%)" , "Date" : "Date"},
-                text=["{:.1f} %".format(value) for value in df["Mandate Execution sr"]])
+                text=["{:.1f} %".format(value) for value in exe_df["Mandate Execution sr"]])
 
     # cre_sr_fig.update_yaxes(tick0=0, dtick=1000)
 
@@ -133,14 +133,14 @@ with st.expander("Mandate Excution"):
     st.plotly_chart(exe_sr_fig)
 
     # Create the line chart
-    exe_vol_fig = px.line(df,
+    exe_vol_fig = px.line(exe_df,
                 x='Date', 
                 y='Mandate Volume Execution', 
                 color='Bank', 
                 title='Mandate Volume Execution' , 
                 markers=True,
                 labels={"Mandate Volume Execution": "Volume (M)" , "Date" : "Date"},
-                text=["{:.1f} k".format(value/1000) for value in df["Mandate Volume Execution"]])
+                text=["{:.1f} k".format(value/1000) for value in exe_df["Mandate Volume Execution"]])
 
     exe_vol_fig.update_yaxes(tick0=0, dtick=10000)
 
@@ -151,14 +151,14 @@ with st.expander("Mandate Excution"):
     st.plotly_chart(exe_vol_fig)
 
     # Create the line chart
-    exe_succ_vol_fig = px.line(df,
+    exe_succ_vol_fig = px.line(exe_df,
                 x='Date', 
                 y='Mandate SuccVolume Execution', 
                 color='Bank', 
                 title='Mandate SuccVolume Execution' , 
                 markers=True,
                 labels={"Mandate SuccVolume Execution": "Volume (M)" , "Date" : "Date"},
-                text=["{:.1f} k".format(value/1000) for value in df["Mandate SuccVolume Execution"]])
+                text=["{:.1f} k".format(value/1000) for value in exe_df["Mandate SuccVolume Execution"]])
 
     exe_succ_vol_fig.update_yaxes(tick0=0, dtick=10000)
 
