@@ -30,7 +30,7 @@ min_date = max_date - pd.Timedelta(days=13)
 with cols[1]:
     start_date = st.date_input("Start Date", min_value=acc_min_date, max_value=max_date, value=min_date)
 with cols[2]:    
-    end_date = st.date_input("End Date", min_value=min_date, max_value=max_date, value=max_date)
+    end_date = st.date_input("End Date", min_value=acc_min_date, max_value=max_date, value=max_date)
 
 
 filtered_df = df.query('Bank == @selected_bank and Date >= @start_date and Date <= @end_date')
