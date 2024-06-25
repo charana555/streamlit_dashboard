@@ -44,6 +44,10 @@ def upload_bind_csv(data , bank ):
     client_data = conn.read(worksheet="BindDevice")
     client_data.dropna(how='all', inplace=True)
     
-    
+    client_data['Date'] = pd.to_datetime(client_data['Date'], format='%d/%m/%Y' , errors='coerce').dt.strftime('%d/%m/%Y')
+
     updated_data = update_bind_sheet(client_data, data)
+
+    updated_data['Date'] = pd.to_datetime(updated_data['Date'], format='%d/%m/%Y' , errors='coerce').dt.strftime('%d/%m/%Y')
+    
     cre = conn.update(worksheet="BindDevice" , data=updated_data)

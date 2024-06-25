@@ -56,6 +56,8 @@ def preprocess_lite_sr_file(df , selected_bank):
 
 def preprocess_srvol_file(df , selected_bank):
     df = df.rename(columns={'day': 'Date'})
+    df['Date'] = pd.to_datetime(df['Date'] , format='%d/%m/%Y', errors='coerce')
+    df['Date'] = df['Date'].dt.strftime('%d/%m/%Y')
     columns_to_keep_actual = [col for col in volume_col_list if col in df.columns]
     filtered_df = df[columns_to_keep_actual]
     filtered_df['Bank'] = selected_bank
@@ -113,6 +115,12 @@ def upload_csv(data , bank , type):
     client_data = conn.read(worksheet="Volume")
     client_data.dropna(how='all', inplace=True)
     
+    client_data['Date'] = pd.to_datetime(client_data['Date'] , format='%d/%m/%Y' , errors='coerce')
+    client_data['Date'] = client_data['Date'].dt.strftime('%d/%m/%Y')
     
     updated_data = update_sheet(client_data, data)
+
+    updated_data['Date'] = pd.to_datetime(updated_data['Date'] , format='%d/%m/%Y' , errors='coerce')
+    updated_data['Date'] = updated_data['Date'].dt.strftime('%d/%m/%Y')
+    
     cre = conn.update(worksheet="Volume" , data=updated_data)
