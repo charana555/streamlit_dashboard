@@ -59,7 +59,7 @@ def stats_component(data , bank , filtered_tps):
             labels={"Percentage": "Percentage (%)", "Date": "Date"} ,text=["{:.1f}".format(value) for value in sr_melted["Percentage"]] , markers=True , title=f"{bank} Success Rate" )
 
     # Customize the y-axis to have intervals of 5
-    sr_fig.update_yaxes(tick0=0, dtick=5)
+    # sr_fig.update_yaxes(tick0=0, dtick=5)
 
 
     # Add data labels to the points
@@ -100,7 +100,7 @@ def stats_component(data , bank , filtered_tps):
         title=f"{bank} Volume"
     )
 
-    volume_fig.update_yaxes(tick0=0, dtick=500000)
+    # volume_fig.update_yaxes(tick0=0, dtick=500000)
 
     volume_fig.update_traces(textposition="bottom center")
 
@@ -139,7 +139,7 @@ def stats_component(data , bank , filtered_tps):
         title=f"{bank} Success Volume"
     )
 
-    success_volume_fig.update_yaxes(tick0=0, dtick=500000)
+    # success_volume_fig.update_yaxes(tick0=0, dtick=500000)
 
     success_volume_fig.update_traces(textposition="bottom center")
 

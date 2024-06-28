@@ -44,19 +44,19 @@ df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
 df["Credit Card sr"] = (df["CREDIT CARD Succvolume"] * 100) / df["CREDIT CARD Volume"]
 
 # Create the line chart
-cre_sr_fig = px.bar(df,
+cre_sr_fig = px.line(df,
             x='Date', 
             y='Credit Card sr', 
             color='Bank', 
             title='Credit Card sr ' , 
-            # markers=True,
-            barmode='group',
+            markers=True,
+            # barmode='group',
             labels={"Credit Card sr": "Percentage (%)" , "Date" : "Date"},
             text=["{:.1f} %".format(value) for value in df["Credit Card sr"]])
 
 # cre_sr_fig.update_yaxes(tick0=0, dtick=1000)
 
-# cre_sr_fig.update_traces(textposition="bottom center")
+cre_sr_fig.update_traces(textposition="bottom center")
 
 cre_sr_fig.update_layout(title_x=0.5 , legend=dict(orientation="h", yanchor="top", y=1.2, xanchor="right", x=1))
 # Streamlit app
