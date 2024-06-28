@@ -73,69 +73,69 @@ sr_fig.update_layout(title_x=0.5 , legend=dict(orientation="h", yanchor="top", y
 
 st.plotly_chart(sr_fig)
 
-verses_df = df.query('Date >= @start_date and Date <= @end_date')
-verses_df['InboundSr'] = round((verses_df['verifiedBeforeExpiry'] * 100 ) / verses_df['Total'] , 2)
-verses_df['BoundSr']  = round(( verses_df['BoundCount'] * 100 ) / verses_df['Total'],2)
-verses_df['ActivatedSr'] = round((verses_df['activatedCount'] * 100) / verses_df['Total'],2)
+# verses_df = df.query('Date >= @start_date and Date <= @end_date')
+# verses_df['InboundSr'] = round((verses_df['verifiedBeforeExpiry'] * 100 ) / verses_df['Total'] , 2)
+# verses_df['BoundSr']  = round(( verses_df['BoundCount'] * 100 ) / verses_df['Total'],2)
+# verses_df['ActivatedSr'] = round((verses_df['activatedCount'] * 100) / verses_df['Total'],2)
 
-color_palet = ["#115f9a", "#1984c5", "#22a7f0", "#48b5c4", "#76c68f", "#a6d75b", "#b3d4ff", "#8bd3c7", "#00b7c7"]
+# color_palet = ["#115f9a", "#1984c5", "#22a7f0", "#48b5c4", "#76c68f", "#a6d75b", "#b3d4ff", "#8bd3c7", "#00b7c7"]
 
-isr_fig = px.bar(verses_df, x="Date", y="InboundSr", color="Bank", barmode="group",
-             title="APL VS YAPL VS RAPL ( InBound SR %)",
-             labels={"Date": "Date", "InboundSr": "InboundSr", "Bank": "Bank Type"},
-             text='InboundSr',
-             color_discrete_sequence=color_palet
-             )
-isr_fig.update_layout(
-    xaxis_title="Date",
-    yaxis_title="InboundSr",
-    legend_title="Bank",
-    title={
-        'text': "APL VS YAPL VS RAPL ( InBound SR %)",
-        'y':0.9,
-        'x':0.5,
-        'xanchor': 'center',
-        'yanchor': 'top'}
-)
+# isr_fig = px.bar(verses_df, x="Date", y="InboundSr", color="Bank", barmode="group",
+#              title="APL VS YAPL VS RAPL ( InBound SR %)",
+#              labels={"Date": "Date", "InboundSr": "InboundSr", "Bank": "Bank Type"},
+#              text='InboundSr',
+#              color_discrete_sequence=color_palet
+#              )
+# isr_fig.update_layout(
+#     xaxis_title="Date",
+#     yaxis_title="InboundSr",
+#     legend_title="Bank",
+#     title={
+#         'text': "APL VS YAPL VS RAPL ( InBound SR %)",
+#         'y':0.9,
+#         'x':0.5,
+#         'xanchor': 'center',
+#         'yanchor': 'top'}
+# )
 
-st.plotly_chart(isr_fig)
+# st.plotly_chart(isr_fig)
 
-bsr_fig = px.bar(verses_df, x="Date", y="BoundSr", color="Bank", barmode="group",
-             title="APL VS YAPL VS RAPL ( BoundSr SR %)",
-             labels={"Date": "Date", "BoundSr": "BoundSr", "Bank": "Bank Type"},
-             text='BoundSr',
-             color_discrete_sequence=color_palet[3:]
-             )
-bsr_fig.update_layout(
-    xaxis_title="Date",
-    yaxis_title="BoundSr",
-    legend_title="Bank",
-    title={
-        'text': "APL VS YAPL VS RAPL ( BoundSr SR %)",
-        'y':0.9,
-        'x':0.5,
-        'xanchor': 'center',
-        'yanchor': 'top'}
-)
+# # bsr_fig = px.bar(verses_df, x="Date", y="BoundSr", color="Bank", barmode="group",
+# #              title="APL VS YAPL VS RAPL ( BoundSr SR %)",
+# #              labels={"Date": "Date", "BoundSr": "BoundSr", "Bank": "Bank Type"},
+# #              text='BoundSr',
+# #              color_discrete_sequence=color_palet[3:]
+# #              )
+# # bsr_fig.update_layout(
+# #     xaxis_title="Date",
+# #     yaxis_title="BoundSr",
+# #     legend_title="Bank",
+# #     title={
+# #         'text': "APL VS YAPL VS RAPL ( BoundSr SR %)",
+# #         'y':0.9,
+# #         'x':0.5,
+# #         'xanchor': 'center',
+# #         'yanchor': 'top'}
+# # )
 
-st.plotly_chart(bsr_fig)
+# # st.plotly_chart(bsr_fig)
 
-asr_fig = px.bar(verses_df, x="Date", y="ActivatedSr", color="Bank", barmode="group",
-             title="APL VS YAPL VS RAPL ( ActivatedSr SR %)",
-             labels={"Date": "Date", "ActivatedSr": "ActivatedSr", "Bank": "Bank Type"},
-             text='ActivatedSr',
-             color_discrete_sequence=color_palet[6:]
-             )
-asr_fig.update_layout(
-    xaxis_title="Date",
-    yaxis_title="ActivatedSr",
-    legend_title="Bank",
-    title={
-        'text': "APL VS YAPL VS RAPL ( ActivatedSr SR %)",
-        'y':0.9,
-        'x':0.5,
-        'xanchor': 'center',
-        'yanchor': 'top'}
-)
+# asr_fig = px.bar(verses_df, x="Date", y="ActivatedSr", color="Bank", barmode="group",
+#              title="APL VS YAPL VS RAPL ( ActivatedSr SR %)",
+#              labels={"Date": "Date", "ActivatedSr": "ActivatedSr", "Bank": "Bank Type"},
+#              text='ActivatedSr',
+#              color_discrete_sequence=color_palet[6:]
+#              )
+# asr_fig.update_layout(
+#     xaxis_title="Date",
+#     yaxis_title="ActivatedSr",
+#     legend_title="Bank",
+#     title={
+#         'text': "APL VS YAPL VS RAPL ( ActivatedSr SR %)",
+#         'y':0.9,
+#         'x':0.5,
+#         'xanchor': 'center',
+#         'yanchor': 'top'}
+# )
 
-st.plotly_chart(asr_fig)
+# st.plotly_chart(asr_fig)
