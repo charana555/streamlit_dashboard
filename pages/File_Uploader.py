@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd 
-from datetime import datetime
+
+from sidebar import create_sidebar
 
 from utils.upload_volume import upload_csv
 from utils.upload_errorcodes import upload_error_csv
@@ -9,6 +10,8 @@ from utils.upload_vmn import upload_vmn_csv
 from utils.upload_bind_device import upload_bind_csv
 
 st.set_page_config(layout='wide')
+
+create_sidebar()
 
 file_types = {
     "Volume" : ["SR_Vol" , "CC_TXN" ,"CALLBACK_SR" , "LITE_SR" , "MAN_EXE" , "MAN_CRE" , "ON_OFF_US"] ,

@@ -2,9 +2,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+from sidebar import create_sidebar
+
 from connection import get_connection
 
+
 st.set_page_config(layout='wide')
+create_sidebar()
 
 conn = get_connection()
 df = conn.read(worksheet='VMN')

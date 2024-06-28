@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 from connection import get_connection
 import plotly.express as px
-import plotly.graph_objects as go
+from sidebar import create_sidebar
 
 
 st.set_page_config(layout="wide")
 
+create_sidebar()
 # Create a connection object.
 conn = get_connection()
 df = conn.read(worksheet="Volume")

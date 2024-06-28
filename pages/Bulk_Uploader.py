@@ -7,7 +7,11 @@ from utils.upload_refunds import upload_refund_csv
 from utils.upload_vmn import upload_vmn_csv
 from utils.upload_bind_device import upload_bind_csv
 
+from sidebar import create_sidebar
+
 st.set_page_config(layout='wide')
+
+create_sidebar()
 
 file_name_keywords = [
     'srvol',
